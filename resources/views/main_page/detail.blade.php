@@ -23,6 +23,10 @@
           @elseif(!empty($ryokan['up_file1']))
             <a href=""><img class='detail_img_sub' src="{{ asset('img/'.$ryokan->up_file1) }}" alt="旅館のサブ画像"></a>
           @endif
+          <div class='click_img'>
+            <div class='big_img'><img src="" alt=""></div>
+            <p class='close_btn'><a href="">✖</a></p>
+          </div>
           <div id="back">
             <div class='subBig'><img class='detail_img_subBig' src=""></div>
           </div>
@@ -43,10 +47,17 @@
             <a href="{{ route('rakuten', $ryokan->name) }}">予約はこちら</a>
             <a href="{{ route('review', $ryokan->id) }}">お客様の声</a>
         </div>
-        <span class='goods'>
-          <i class="fa-regular fa-heart good-toggle gooded" data-ryokan-id="{{ $ryokan->id }}" data-user-id="{{ session('id') }}"></i>
-          <span class="good-counter">{{ $ryokan->goods_count }}</span>
-        </span>
+        @if(!$ryokan->isGoodedBy($user = session('id')))
+          <span class='goods'>
+            <i class="fa-regular fa-heart good-toggle" data-ryokan-id="{{ $ryokan->id }}" data-user-id="{{ session('id') }}"></i>
+            <span class="good-counter">{{ $param['goods_count'] }}</span>
+          </span>
+        @else
+          <span class='goods'>
+            <i class="fa-solid fa-heart good-toggle gooded" data-ryokan-id="{{ $ryokan->id }}" data-user-id="{{ session('id') }}"></i>
+            <span class="good-counter">{{ $param['goods_count'] }}</span>
+          </span>
+        @endif
       </div>
     </div>
     

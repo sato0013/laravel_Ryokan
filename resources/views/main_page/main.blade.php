@@ -33,13 +33,16 @@
           <img src="{{ asset('img/kyuusyuu.png') }}" alt="">
         </div>
         <div class='search'>
-           <form action="ryokan_search.php" method="POST">
+           <form action="{{ route('search') }}" method="GET">
              <p>検索フォーム</p>
              <div>
-               <select name="selectbox">
-                <option value="Prefectures" >県名</option>
+               <label for="goods">いいね数</label>
+               <select name="goods" id="good">
+                 <option value="">選択して下さい</option>
+                 <option value="2">2以上</option>
+                 <option value="5">5以上</option>
                </select>
-                <input type="text" name="textbox">
+                <input type="text" name="keyword" placeholder="旅館名入力">
                 <input type="submit" name="search" value="検索">
               </div>  
            </form>

@@ -376,6 +376,56 @@ a {
 }
 
 /*いいね*/
-.goods {
+.gooded {
     color: red;
 }
+
+/*サブ画像拡大表示*/
+.detail_img_sub :hover {
+    opacity: 0.8;
+  }
+
+  .detail_img_sub img {
+    width: 200px;
+  }
+
+.click_img {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: none;
+  }
+
+.big_img {
+    position: absolute;
+    width: 80%;
+    max-width: 500px;
+    top: 70px;
+    left: 0;
+    right: 0;
+    border-radius: 5px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .big_img img {
+    height: 300px;
+    width: 500px;
+    border-radius: 7px;
+  }
+
+  .close_btn {
+    color: #fff;
+    font-size: 40px;
+    position: absolute;
+    right: 20px;
+    top: 0;
+  }
+
+.close_btn a {
+    color: #fff;
+    text-decoration: none;
+  }

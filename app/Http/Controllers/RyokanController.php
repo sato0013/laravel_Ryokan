@@ -117,10 +117,10 @@ class RyokanController extends Controller
             return redirect(route('ryokan'));
         }
 
-        $goods_count = Good::count('name_id', $id);
+        $goods_count = Ryokan::withCount('goods')->findOrFail($id)->goods_count;
         $param = [
             'goods_count' => $goods_count,
-        ];
+        ]; 
         //dd($param);
         return view('main_page.detail', ['ryokan' => $ryokan, 'param' => $param]);
     }
@@ -272,6 +272,37 @@ class RyokanController extends Controller
             //dd($hotel->hotelInformationUrl);
         }
         return redirect($hotel->hotelInformationUrl);
+    }
+
+    /**
+     * 旅館検索機能
+     */
+    public function ryokanSearch(Request $request)
+    {
+        //dd($request);
+        $goods = $request->input('goods');
+        $keyword = $request->input('keyword');
+
+        $ryokan_query = Ryokan::query();
+        //dd($goods);
+        if(!empty($goods)) {
+            $name_id = Good::select('name_id')->groupBy('name_id')->havingRaw('COUNT(name_id) >= ' . $goods)->get();
+            $ryokan_id = $name_id->pluck('name_id');
+            //dd($ryokan_id, $name_id);
+            foreach($ryokan_id as $id) {
+                $ryokan_query->orWhere("id", $id);
+            }
+            
+            //dd($ryokan_id);
+        }
+
+        if(!empty($keyword)) {
+            $ryokan_query->where('name', 'LIKE', "%{$keyword}%");
+        }
+
+        $ryokans = $ryokan_query->get();
+        //dd($ryokans);
+        return view('main_page.search', ['ryokans'=> $ryokans]);
     }
 }
 

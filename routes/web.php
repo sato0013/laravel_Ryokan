@@ -68,6 +68,7 @@ Route::get('/ryokan/pass', 'App\Http\Controllers\LoginController@userPass')->nam
 //パスワード再設定をする
 Route::post('/ryokan/reset', 'App\Http\Controllers\LoginController@passReset')->name('reset');
 
+
 //旅館のレビュー一覧をする
 Route::get('/ryokan/review/{id}', 'App\Http\Controllers\ReviewController@ryokanReview')->name('review');
 //旅館のレビューを投稿画面を表示する
@@ -78,3 +79,6 @@ Route::post('/ryokan/reviewPost/{id}', 'App\Http\Controllers\ReviewController@re
 
 //いいね
 Route::post('/ryokan/good', 'App\Http\Controllers\GoodController@ryokanGood')->name('good');
+
+//検索機能
+Route::get('/ryokan/search', 'App\Http\Controllers\RyokanController@ryokanSearch')->name('search');

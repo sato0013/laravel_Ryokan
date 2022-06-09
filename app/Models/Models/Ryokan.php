@@ -31,6 +31,6 @@ class Ryokan extends Model
     }
 
     public function isGoodedBy($user): bool {
-        return Good::where('user_id', $user->id)->where('name_id', $this->id)->first() !==null;
+        return Good::where('user_id', $user)->where('name_id', $this->id)->first() !==null;
     }
 }

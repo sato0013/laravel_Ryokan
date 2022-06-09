@@ -12,6 +12,6 @@
   <a href="/laravel/testproject/public/ryokan/main" class="title">九州ひとり旅<img class='title_logo' src="{{ asset('img/mark.png') }}" alt=""></a>
       <div class="g_nav">
         <a href="{{ route('mypage', session('id')) }}" class="mypage">マイページ</a>
-        <a href="../front_page/login.php" class="logout">ログアウト</a>
+        <a href="{{ route('show') }}" class="logout">ログアウト</a>
       </div>
   </header>
